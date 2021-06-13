@@ -1,0 +1,4 @@
+# tsunami_v1.0.2
+tsunami app ( not completed )
+
+*FONTS AND BOOTSTRAP WON'T WORK UNLESS YOU GIVE LINKS TO CDNs OR DOWNLOAD THEM TO USE LOCALLY*
