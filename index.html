@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>tsunami counter</title>
+    <link rel="stylesheet" href="./fonts/awesome/css/all.css" />
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body id="elem">
+    <!-- Top Nav -->
+    <nav class="fixed-top bg-dark top-nav">
+        <span class="menu">
+        <span class="pr-3 pl-2 ts">Ts</span>
+        <span class="dropdown">
+        <span class="ml-4">File</span>
+        <div class="dropdown-content ml-2 bg-dark">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" data-toggle="modal" data-target=".staticBackdrop">
+                    New
+                </li>
+                <li class="list-group-item">Open Folder</li>
+                <li class="list-group-item">save</li>
+                <li class="list-group-item">Export As PDF</li>
+                <li class="list-group-item">Print</li>
+                <li class="list-group-item">Refresh</li>
+                <li class="list-group-item">Exit</li>
+            </ul>
+        </div>
+        </span>
+        <span class="dropdown">
+        <span class="ml-4">Edit</span>
+        <div class="dropdown-content ml-2 bg-dark">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Undo</li>
+                <li class="list-group-item">Redo</li>
+            </ul>
+        </div>
+        </span>
+        <span class="dropdown">
+        <span class="ml-4">Select</span>
+        <div class="dropdown-content ml-2 bg-dark">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Select All To Refresh</li>
+                <li class="list-group-item">Select All To Edit</li>
+                <li class="list-group-item">Select All To Delete</li>
+            </ul>
+        </div>
+        </span>
+        <span class="dropdown">
+        <span class="ml-4">View</span>
+        <div class="dropdown-content ml-2 bg-dark">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Full Screen</li>
+                <li class="list-group-item">Hide Right Pane</li>
+                <li class="list-group-item">Zoom In</li>
+                <li class="list-group-item">Zoom Out</li>
+            </ul>
+        </div>
+        </span>
+        <span class="dropdown">
+        <span class="ml-4 mr-4">Help</span>
+        <div class="dropdown-content ml-2 bg-dark">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Welcome</li>
+                <li class="list-group-item">How To Use</li>
+                <li class="list-group-item">View License</li>
+                <li class="list-group-item">Check For Updates</li>
+                <li class="list-group-item">About</li>
+            </ul>
+        </div>
+        </span>
+        </span>
+        <span id="filenameName">
+      <span class="text-muted">TSUNAMI</span> &rarr;
+        <span class="user-file-name text-success">current user file name</span>
+        </span>
+        <span class="actions-control">
+          <i class="fas fa-minus mr-3"></i>
+          <i class="fas fa-window-maximize mr-3"></i>
+          <i class="fas fa-times"></i>
+        </span>
+    </nav>
+    <!-------------------------end of top nav----------------------------------->
+
+    <!-- Modal for creating a new file ----------------->
+    <div class="modal bg-dark-green modal-xl staticBackdrop fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-prepend">
+                                <label for="prod" class="input-group-text">prodd</label>
+                            </div>
+                            <select id="prod" class="custom-select">
+                                <option selected>choose</option>
+                                <option value="1">one</option>
+                            </select>
+                        </div>
+                        <div id="productsDiv">
+                            <label for="products">products</label>
+                            <input type="text" id="products" required autofocus />
+                        </div>
+
+                        <div id="openedDiv">
+                            <label for="open">open</label>
+                            <input type="number" placeholder="0.00" id="open" />
+                        </div>
+
+                        <div id="addedDiv">
+                            <label for="added">added</label>
+                            <input type="number" placeholder="0.00" id="added" />
+                        </div>
+
+                        <div id="totalitemsDiv">
+                            <label for="totalitems">totalitems</label>
+                            <input type="number" placeholder="0.00" id="totalitems" />
+                        </div>
+
+                        <div id="closingDiv">
+                            <label for="closing">closing</label>
+                            <input type="number" placeholder="0.00" id="closing" />
+                        </div>
+
+                        <div id="priceDiv">
+                            <label for="price">price</label>
+                            <input type="number" id="price" placeholder="0.00" />
+                        </div>
+
+                        <div id="salesDiv">
+                            <label for="sales">sales</label>
+                            <!-- <input type="number" placeholder="0.00" id="sales" /> -->
+                        </div>
+
+                        <div id="ammountDiv">
+                            <label for="ammount">ammount</label>
+                            <input type="number" placeholder="0.00" id="ammount" />
+                        </div>
+
+                        <div class="modal-footer">
+                            <span class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </span>
+                            <button class="btn btn-primary">Finish</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------end of Modal for creating a new file-------->
+    <div class="mt-2">
+        <div class="phase">
+            <div class="left-pane">
+                <span id="resize2"></span>
+                <h6 class="mt-2">Actions</h6>
+                <br />
+
+                <div class="row py-3 ml">
+                    <div class="col hovercolor" data-toggle="modal" data-target=".staticBackdrop" data-toggle="tooltip" data-placement="bottom" title="Create a new file">
+                        <span id="calculator" class="mr-1 mt-4"><i class="far fa-file h3"></i></span>
+                        <small>New file</small>
+                    </div>
+                    <div class="col hovercolor" data-toggle="tooltip" data-placement="bottom" title="Save this file as PDF">
+                        <span id="calender" class="mr-1 mt-4"><i class="fas fa-file-pdf h3"></i></span>
+                        <small>PDF</small>
+                    </div>
+                    <div class="col hovercolor" data-toggle="tooltip" data-placement="bottom" title="Print this file">
+                        <span id="watch" class="mr-1 mt-4"><i class="fas fa-print h3"></i></span>
+                        <small>Print</small>
+                    </div>
+                </div>
+
+                <div class="row py-3 ml">
+                    <div class="col hovercolor" data-toggle="tooltip" data-placement="bottom" title="Add all people or companies with bills">
+                        <span id="calculator" class="mr-1 mt-4"><i class="far fa-money-bill-alt h3"></i></span>
+                        <small>Bills</small>
+                    </div>
+                    <div class="col hovercolor" data-toggle="tooltip" data-placement="bottom" title="Add daily expense">
+                        <span id="calender" class="mr-1 mt-4"><i class="fas fa-business-time h3"></i></span>
+                        <small>Expense</small>
+                    </div>
+                    <div class="col hovercolor" data-toggle="tooltip" data-placement="bottom" title="Add miscellaneous (unplaned usage of money)">
+                        <span id="watch" class="mr-1 mt-4"><i class="fas fa-funnel-dollar h3"></i></span>
+                        <small>misc</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-light">
+                                Other Payment Methods
+                            </h6>
+                            <p class="card-text">
+                                <em>i.e M-pesa, PayPal, MasterCard etc</em>
+                                <span class="btn btn-outline-success" id="paymentmethodBtn ">Click here to add</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="mt-5">Widgets</h6>
+                <br />
+                <div class="row py-3 ml">
+                    <div class="col hovercolor" data-toggle="tooltip" data-placement="bottom" title="Quick calculate manually">
+                        <span id="calculator" class="mr-1 mt-4"><i class="fas fa-calculator h3"></i></span>
+                        <small>Calculator</small>
+                    </div>
+                    <div class="col hovercolor" data-toggle="tooltip" data-placement="bottom" title="Choose a date to create project">
+                        <span id="calender" class="mr-1 mt-4"><i class="far fa-calendar-alt h3"></i></span>
+                        <small>Calender</small>
+                    </div>
+                    <div class="col hovercolor" data-toggle="tooltip" data-placement="bottom" title="Assign reminder to your project (s)">
+                        <span id="watch" class="mr-1 mt-4"><i class="fas fa-stopwatch h3"></i></span>
+                        <small>Rem</small>
+                    </div>
+                </div>
+                <hr />
+                <br />
+                <div class="py-2 ml-1">
+                    <span class="text-warning h6 rl">Properties</span>
+                    <div class="text-muted mt-2">
+                        File Name <span class="ml-5 text-success">kijiweni shop</span>
+                    </div>
+                    <div class="text-muted">
+                        File Size <span class="ml-5 text-success">768 kbs</span>
+                    </div>
+                    <div class="text-muted">
+                        Contains <span class="ml-5 text-success">56 products</span>
+                    </div>
+                    <div class="text-muted">
+                        From <span class="ml-5 text-success">22/2/2019 6:38 pm</span>
+                    </div>
+                    <div class="text-muted">
+                        File Format<span class="ml-5 text-success">.tsu</span>
+                    </div>
+                    <div class="text-muted">
+                        Location <span class="ml-5 text-success">C:\Users\Lemei</span>
+                    </div>
+                    <div class="text-muted">
+                        Attribute <span class="ml-5 text-success">Readonly</span>
+                    </div>
+                    <div class="text-muted">
+                        OS <span class="ml-5 text-success">Windows 10</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 main-pane">
+                <div class="spanelement hide">
+                    <!-- <div class="right-side-items">
+                        <div class="tab">
+                            hello
+                            <i class="fas fa-times-circle mr-3"></i></div>
+                    </div> -->
+                    <div class="left-side-item">
+                        <i class="fas fa-share-alt-square mr-3"></i><i class="fas fa-plus-square mr-3"></i><i class="fas fa-check-square mr-3"></i><i class="fas fa-search-plus mr-3"></i>
+                    </div>
+                </div>
+                <div id="tabledata" oncontextmenu="return showMenu(event);"></div>
+            </div>
+            <div class="right-pane" id="right_panel">
+                <span id="resize"></span>
+                <h5 class="mt">
+                    <span class="text-muted"><em>Gross </em></span> =
+                    <span class="mySum amtsmain"></span>
+                </h5>
+                <h5 class="rl">
+                    <span class="text-muted"><em>M-Pesa </em></span> =
+                    <span class="amtsmain">40200</span>
+                </h5>
+                <h5 class="rl">
+                    <span class="text-muted"><em>Rem </em></span> =
+                    <span class="amtsmain">40350</span>
+                </h5>
+                <hr />
+
+                <div class="bills rl">
+                    <h6 class="text-warning">
+                        <strong><em>Bills</em></strong>
+                    </h6>
+                    <div>
+                        <span class="text-muted"><em>Ben</em></span> =>
+                        <span class="amtsmain">400</span>
+                    </div>
+                    <div>
+                        <span class="text-muted"><em>Jane</em></span> =>
+                        <span class="amtsmain">100</span>
+                    </div>
+                    <div>
+                        <span class="text-muted"><em>Lemei</em></span> =>
+                        <span class="amtsmain">330</span>
+                    </div>
+                    <div>
+                        <span class="text-muted"><em>Alex</em></span> =>
+                        <span class="amtsmain">450</span>
+                    </div>
+                    <div>
+                        <span class="text-muted"><em>Nik</em></span> =>
+                        <span class="amtsmain">230</span>
+                    </div>
+                </div>
+                <div class="bills-total h6">
+                    <span class="text-muted"><em>Sub</em></span> =>
+                    <span class="amtsmain">1510</span>
+                </div>
+                <hr />
+                <div class="expense rl">
+
+                    <h6 class="text-warning">
+                        <strong><em>Expense</em></strong>
+                    </h6>
+                    <div>
+                        <span class="text-muted"><em>Luno</em></span> =>
+                        <span class="amtsmain">100</span>
+                    </div>
+                    <div>
+                        <span class="text-muted"><em>Soja</em></span> =>
+                        <span class="amtsmain">250</span>
+                    </div>
+                    <div>
+                        <span class="text-muted"><em>Alex</em></span> =>
+                        <span class="amtsmain">100</span>
+                    </div>
+                    <div>
+                        <span class="text-muted"><em>Tissue</em></span> =>
+                        <span class="amtsmain">100</span>
+                    </div>
+                    <div>
+                        <span class="text-muted"><em>Bulb</em></span> =>
+                        <span class="amtsmain">100</span>
+                    </div>
+                </div>
+                <div class="bills-total h6">
+                    <span class="text-muted"><em>Sub</em></span> =>
+                    <span class="amtsmain">750</span>
+                </div>
+                <hr />
+                <div class="miscellaneous rl">
+                    <h6 class="text-warning">
+                        <strong><em>misc</em></strong>
+                    </h6>
+                    <div>
+                        <span class="text-muted"><em>Police</em></span> =>
+                        <span class="amtsmain">20000</span>
+                    </div>
+                </div>
+                <div class="bills-total h6">
+                    <span class="text-muted"><em>Sub</em></span> =>
+                    <span class="amtsmain">20000</span>
+                </div>
+                <hr />
+                <div class="totalsub">
+                    <span class="text-warning"><strong><em>Bills</em></strong> +
+            <strong><em>Expense</em></strong> +
+            <strong><em>misc</em></strong></span> = <span class="amtsmain">22260</span>
+                </div>
+                <hr />
+                <div class="rem-others">
+                    <span class="text-muted"><em>Rem </em></span> :
+                    <span class="amtsmain h5">40350</span> -
+                    <span class="amtsmain h5">22260</span>
+                </div>
+                <hr />
+                <h5 class="mt rl">
+                    <span class="text-muted"><em>Net Total </em></span> =
+                    <span class="amtsmain"> 18090</span>
+                </h5>
+                <div class="rl"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="contextMenu" class="context-menu" style="left: 565px; top: 149px;">
+        <ul>
+            <li>Add a event listener</li>
+            <li>Disble default behaviour</li>
+            <li>Design context menu</li>
+            <li>Show the context menu</li>
+            <li class="separator"></li>
+            <li>Hide on mouse click</li>
+            <li>Hide on escape key</li>
+        </ul>
+    </div>
+
+
+    <nav class="navbar fixed-bottom bg-dark">
+        <div class="justify-content-start ml-2"><span>Tsunami v0.1 </span></div>
+        <span class="error"><i class="fas fa-exclamation-triangle text-warning"></i> error messages
+    </span>
+        <div class="justify-content-end mr-4 py-1">
+            <span><i id="donate" class="fas fa-hand-holding-usd hovercolor mr-4"></i></span>
+            <span><i id="feedback" class="fas fa-sms hovercolor mr-4"></i></span>
+            <span><i id="notifications" class="fas fa-bell hovercolor mr-4"></i></span>
+            <span><i id="users" class="fas fa-user hovercolor mr-4"></i></span>
+            <span><i id="setting" class="fas fa-cog hovercolor"></i></span>
+        </div>
+    </nav>
+    <!-- settings, users, bell, messages,
+          donate -->
+
+    <script src="./bootstrap/js/jquery.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="./fonts/awesome/js/all.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+
+<!-- <form>
+  <div class="form-row ">
+    <div class="col-md-4 mb-3 ">
+      <label for="validationServer01 ">First name</label>
+      <input type="text " class="form-control is-valid " id="validationServer01 " value="Mark " required>
+      <div class="valid-feedback ">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3 ">
+      <label for="validationServer02 ">Last name</label>
+      <input type="text " class="form-control is-valid " id="validationServer02 " value="Otto " required>
+      <div class="valid-feedback ">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3 ">
+      <label for="validationServerUsername ">Username</label>
+      <div class="input-group ">
+        <div class="input-group-prepend ">
+          <span class="input-group-text " id="inputGroupPrepend3 ">@</span>
+        </div>
+        <input type="text " class="form-control is-invalid " id="validationServerUsername "
+          aria-describedby="inputGroupPrepend3 " required>
+        <div class="invalid-feedback ">
+          Please choose a username.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row ">
+    <div class="col-md-6 mb-3 ">
+      <label for="validationServer03 ">City</label>
+      <input type="text " class="form-control is-invalid " id="validationServer03 " required>
+      <div class="invalid-feedback ">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3 ">
+      <label for="validationServer04 ">State</label>
+      <select class="custom-select is-invalid " id="validationServer04 " required>
+        <option selected disabled value=" ">Choose...</option>
+        <option>...</option>
+      </select>
+      <div class="invalid-feedback ">
+        Please select a valid state.
+      </div>
+    </div>
+    <div class="col-md-3 mb-3 ">
+      <label for="validationServer05 ">Zip</label>
+      <input type="text " class="form-control is-invalid " id="validationServer05 " required>
+      <div class="invalid-feedback ">
+        Please provide a valid zip.
+      </div>
+    </div>
+  </div>
+  <div class="form-group ">
+    <div class="form-check ">
+      <input class="form-check-input is-invalid " type="checkbox " value=" " id="invalidCheck3 " required>
+      <label class="form-check-label " for="invalidCheck3 ">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback ">
+        You must agree before submitting.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary " type="submit ">Submit form</button>
+</form> -->
